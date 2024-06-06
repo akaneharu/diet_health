@@ -1,4 +1,14 @@
 <h2>マイページ</h2>
+  
+  <% if @user.profile_image.attached? %>
+    <%= image_tag @user.profile_image, size: "100x100" %>
+ <% else %>
+    <%= image_tag 'no_image', size: "100x100" %>
+ <% end %> 
+
+
+
+
   <p>名前</p>
   <%= @user.name %>
   
@@ -9,4 +19,7 @@
   <%= @user.gender %>
   
   <p>一言</p>
+  <%= @user.introduction %>
+  
+  <%= link_to "プロフィール編集", edit_user_path(@user.id) %>
     
