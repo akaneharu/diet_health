@@ -6,31 +6,59 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://kit.fontawesome.com/fcc22d5b28.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
-      <li>
-         <%= link_to "Diet x Health", root_path %>
-       </li>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+       <div class="container">
+        <a class="navbar-brand" href="/">Diet x Health</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-taeget="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
 
-      <% if user_signed_in? %>
-       <li>
-         <%= link_to "マイページ", user_path(current_user) %>
-       </li>
-       <li>
-         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-       </li>
-      <% else %>
-       <li>
-         <%= link_to "新規登録", new_user_registration_path %>
-       </li>
-       <li>
-         <%= link_to "ログイン", new_user_session_path %>
-       </li>
-      <% end %>
+          <% if user_signed_in? %>
+            <li class="nav-item">
+             <%= link_to root_path, class: 'nav-link text-dark' do %>
+               <i class="fa-solid fa-house"></i> Home
+             <% end %>
+            </li>
+            <li class="nav-item">
+             <%= link_to user_path(current_user), class: 'nav-link text-dark' do %>
+               <i class="fa-solid fa-circle-user"></i> マイページ
+             <% end %>
+            </li>
+            <li class="nav-item">
+             <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark' do %>
+               <i class="fa-solid fa-right-from-bracket"></i> ログアウト
+             <% end %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+             <%= link_to "/about", class: 'nav-link text-dark' do %>
+               <i class="fa-solid fa-dumbbell"></i> About
+             <% end %>
+            </li>
+            <li class="nav-item">
+             <%= link_to new_user_registration_path, class: 'nav-link text-dark' do %>
+               <i class="fa-solid fa-user-plus"></i> 新規登録
+             <% end %>
+            </li>
+            <li class="nav-item">
+             <%= link_to new_user_session_path, class: 'nav-link text-dark' do %>
+               <i class="fa-solid fa-right-to-bracket"></i> ログイン
+             <% end %>
+            </li>
+          <% end %>
+         </ul>
+        </div>
+       </div>
+      </nav>
     </header>
     <%= yield %>
   </body>

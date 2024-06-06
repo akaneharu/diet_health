@@ -1,25 +1,26 @@
-<h2>マイページ</h2>
-  
-  <% if @user.profile_image.attached? %>
-    <%= image_tag @user.profile_image, size: "100x100" %>
- <% else %>
-    <%= image_tag 'no_image', size: "100x100" %>
- <% end %> 
-
-
-
-
-  <p>名前</p>
-  <%= @user.name %>
-  
-  <p>年齢</p>
-  <%= @user.age %>
-  
-  <p>性別</p>
-  <%= @user.gender %>
-  
-  <p>一言</p>
-  <%= @user.introduction %>
-  
-  <%= link_to "プロフィール編集", edit_user_path(@user.id) %>
-    
+ <div class="container px-5 px-sm-0">
+    <div class="row">
+      <div class="col-md-3">
+        <h2>マイページ</h2>
+          
+         <% if @user.profile_image.attached? %>
+            <%= image_tag @user.profile_image, size: "100x100" %>
+         <% else %>
+            <%= image_tag 'no_image', size: "100x100" %>
+         <% end %> 
+        
+         <table class="table">
+          <p>名前</p>
+          <%= @user.name %>
+          
+          <p>年齢</p>
+          <%= @user.age %>
+          
+          <p>性別</p>
+          <%= @user.gender %>
+          
+          <p>一言</p>
+          <%= @user.introduction %>
+          
+          <%= link_to "プロフィール編集", edit_user_path(@user.id) %>
+            

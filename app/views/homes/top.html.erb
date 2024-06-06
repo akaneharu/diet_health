@@ -1,1 +1,16 @@
-<h1>TOPページ</h1>
+ <div class="container">
+    <div class="row">
+      <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
+        <h1>
+          Diet x Health
+        </h1>
+        
+          <%= link_to new_user_session_path, class: 'btn btn-info btn-sm bmb-3 sign_in' do %>
+            ログイン
+          <% end %>
+          <%= link_to new_user_registration_path, class: 'btn btn-success btn-sm sign_up' do %>
+            新規登録
+          <% end %>
+      </div>
+    </div>
+  </div>
