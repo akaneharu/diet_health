@@ -1,7 +1,8 @@
- <div class="container px-5 px-sm-0">
+<main>
+  <div class="container px-5 px-sm-0">
     <div class="row">
-      <div class="col-md-3">
-        <h2>マイページ</h2>
+      <div class="col-md-5">
+        <h2 class="mt-5">マイページ</h2>
           
          <% if @user.profile_image.attached? %>
             <%= image_tag @user.profile_image, size: "100x100" %>
@@ -10,17 +11,30 @@
          <% end %> 
         
          <table class="table">
-          <p>名前</p>
-          <%= @user.name %>
-          
-          <p>年齢</p>
-          <%= @user.age %>
-          
-          <p>性別</p>
-          <%= @user.gender %>
-          
-          <p>一言</p>
-          <%= @user.introduction %>
-          
-          <%= link_to "プロフィール編集", edit_user_path(@user.id) %>
-            
+           <tbody>
+             <tr>
+               <th>名前</th>
+               <th><%= @user.name %></th>
+             </tr>
+             <tr>
+               <th>年齢</th>
+               <th><%= @user.age %></th>
+             </tr>
+             <tr>
+               <th>性別</th>
+               <th><%= @user.gender %></th>
+             </tr>
+             <tr>
+                <th>一言</th>
+                <th><%= @user.introduction %></th>
+             </tr>  
+            </tbody> 
+          </table>  
+          <div class="row">
+            <%= link_to edit_user_path(@user.id), class: 'btn btn-outline-info' do %>
+              プロフィール編集
+            <% end %>  
+          </div>  
+    </div>
+  </div>
+</main>
