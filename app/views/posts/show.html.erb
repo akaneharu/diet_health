@@ -1,0 +1,14 @@
+<div>
+  <h2>タイトル</h2>
+    <%= @post.title %>
+    
+  <% if @post_image.attached? %>
+   <%= image_tag(@post_image, size: "100x100") %>
+  <% else %>
+   画像なし 
+  <% end %>
+  
+  <h3>本文</h3>
+    <%= @post.body %>
+
+</div>

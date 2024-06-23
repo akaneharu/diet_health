@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mt-5 mx-auto">
+
+      <h1>投稿</h1>
+        <%= form_with model: @post do |f| %>
+          <p>タイトル</p>
+          <%= f.text_field :title %>
+          
+          <p>画像</p>
+          <%= f.file_field :image, accept: "image/*" %>
+      
+          <p>本文</p>
+      　   <%= f.text_area :body %>
+      
+         <%= f.submit %>
+      
+        <% end %>
+    </div>  
+  </div>    
+</div>  
