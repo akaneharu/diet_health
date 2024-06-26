@@ -1,22 +1,20 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-        <tbody>
-          <tr></tr>
-          <tr>
-            <th>タイトル</th>
-            <th><%= @post.title %></th>
-          </tr>
-          <tr>
-            <th>
-              <% if @post.image.attached? %>
-                <%= image_tag(@post.image, size: "100x100") %>
-              <% else %>
-                画像なし
-              <% end %>
-            <h2>本文</h2>
-            <%= @post.body %>
-      <div class="row">
+      <h2 class ="mt-5">投稿詳細</h2>
+        <p>【タイトル】
+          <%= @post.title %>
+        </p>  
+        <p>
+          <% if @post.image.attached? %>
+            <%= image_tag(@post.image, size: "200x200") %>
+          <% else %>
+            <p> 画像なし </p>
+          <% end %>
+        </P>
+        <p>【本文】</p>
+        <P> <%= @post.body %> </p>
+        
         <% if @post.user == current_user %>
           <%= link_to "編集", edit_post_path(@post.id), class: 'btn btn-success' %>
           <%= link_to "削除", @post_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-danger' %>
