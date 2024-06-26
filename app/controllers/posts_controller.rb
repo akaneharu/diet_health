@@ -6,12 +6,13 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.post_image.attach(params[:post][:post_image])
+    @post.image.attach(params[:post][:image])
     @post.save
     redirect_to post_path(@post.id)
-  end  
+  end
 
   def index
+    @posts = Post.includes(:user).all
   end
 
   def show
@@ -21,17 +22,17 @@ class PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
   end
-  
+
   def update
     @post = Post.find(params[:id])
     @post.update(post_params)
     redirect_to post_path(@post.id)
-  end  
+  end
 
   private
 
    def post_params
-     params.require(:post).permit(:title, :body, :post_image)
+     params.require(:post).permit(:title, :body, :image)
    end
 
    def is_matching_login_user
@@ -39,6 +40,6 @@ class PostsController < ApplicationController
      unless post.user_id == current_user.id
        redirect_to posts_path
      end
-   end 
+   end
 
 end

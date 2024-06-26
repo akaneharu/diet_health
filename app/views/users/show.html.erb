@@ -1,40 +1,66 @@
 <main>
   <div class="container px-5 px-sm-0">
     <div class="row">
-      <div class="col-md-5">
+      <div class="col-md-3">
         <h2 class="mt-5">マイページ</h2>
-          
+
          <% if @user.profile_image.attached? %>
             <%= image_tag @user.profile_image, size: "100x100" %>
          <% else %>
             <%= image_tag 'no_image', size: "100x100" %>
-         <% end %> 
-        
+         <% end %>
+
          <table class="table">
            <tbody>
              <tr>
-               <th>名前</th>
-               <th><%= @user.name %></th>
+                <th>名前</th>
+                <th><%= @user.name %></th>
              </tr>
              <tr>
-               <th>年齢</th>
-               <th><%= @user.age %></th>
+                <th>年齢</th>
+                <th><%= @user.age %></th>
              </tr>
              <tr>
-               <th>性別</th>
-               <th><%= @user.gender %></th>
+                <th>性別</th>
+                <th><%= @user.gender %></th>
              </tr>
              <tr>
                 <th>一言</th>
                 <th><%= @user.introduction %></th>
-             </tr>  
-            </tbody> 
-          </table>  
+             </tr>
+            </tbody>
+          </table>
           <div class="row">
             <%= link_to edit_user_path(@user.id), class: 'btn btn-outline-info' do %>
               プロフィール編集
-            <% end %>  
-          </div>  
+            <% end %>
+          </div>
+      </div>
+      <div class= "col-md-8 offset-md-1">
+        <h2 class="mt-5">投稿履歴</h2>
+        　<table class="table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>タイトル</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @posts.each do |post| %>
+                <tr>
+                  <td></td>
+                  <td><%= link_to post.title, post_path(post.id) %></td>
+                <% if post.user == current_user %>
+                  <td><%= link_to "編集", edit_post_path(post.id), class: 'btn btn-success' %></td>
+                  <td><%= link_to "削除", posts_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-danger' %></td>
+                <% end %>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+      </div>
     </div>
   </div>
 </main>
